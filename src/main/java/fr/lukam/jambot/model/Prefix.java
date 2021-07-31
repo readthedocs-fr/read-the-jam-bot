@@ -1,11 +1,4 @@
 package fr.lukam.jambot.model;
 
-public class Prefix {
-
-    public final char prefix;
-
-    public Prefix(char prefix) {
-        this.prefix = prefix;
-    }
-
+public record Prefix(char prefix) {
 }

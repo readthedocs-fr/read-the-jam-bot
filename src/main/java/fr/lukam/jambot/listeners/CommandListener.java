@@ -16,7 +16,7 @@ public class CommandListener extends ListenerAdapter {
     public CommandListener(CommandsRepository commandsRepository, Prefix prefix) {
         this.commandsRepository = commandsRepository;
         this.prefix = prefix;
-        this.guildId = ConfigurationUtils.getGuildId().id;
+        this.guildId = ConfigurationUtils.getGuildId().id();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CommandListener extends ListenerAdapter {
             return;
         }
 
-        if (content.charAt(0) != prefix.prefix) {
+        if (content.charAt(0) != prefix.prefix()) {
             return;
         }
 

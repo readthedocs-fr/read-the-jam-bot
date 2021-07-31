@@ -2,9 +2,8 @@ package fr.lukam.jambot.model;
 
 import java.util.Objects;
 
-public class Theme {
-
-    public final String theme;
+public final class Theme {
+    public String theme;
 
     public Theme(String theme) {
         this.theme = theme;
@@ -22,5 +21,4 @@ public class Theme {
     public int hashCode() {
         return Objects.hash(theme);
     }
-
 }
