@@ -13,9 +13,11 @@ public class CommandHelp extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event) {
 
-        event.getChannel().sendMessage("list : voir les propositions\n"
-                + "propose : proposer un thème\n"
-                + "remove : supprimer un thème").queue();
+        event.getChannel().sendMessage("""
+                list : voir les propositions
+                propose : proposer un thème
+                choose : choisir un thème aléatoire
+                remove : supprimer un thème""").queue();
 
     }
 

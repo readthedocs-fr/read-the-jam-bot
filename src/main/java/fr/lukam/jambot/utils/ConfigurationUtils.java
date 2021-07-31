@@ -24,6 +24,9 @@ public class ConfigurationUtils {
     private static final String AUTHORIZED_PATH = "authorized";
     private static final List<String> AUTHORIZED_DEFAULT = Arrays.asList("855906711448555242", "855906711448555242");
 
+    private static final String CHANNELS_PATH = "channels";
+    private static final List<String> CHANNELS_DEFAULT = Arrays.asList("855906711448555242", "855906711448555242");
+
     public static Token getToken() {
 
         URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
@@ -97,6 +100,21 @@ public class ConfigurationUtils {
         List<String> authorized = fileConfig.getOrElse(AUTHORIZED_PATH, AUTHORIZED_DEFAULT);
         fileConfig.close();
         return new Authorized(authorized);
+    }
+
+    public static Channels getChannels() {
+
+        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+
+        if (file == null) {
+            return new Channels(CHANNELS_DEFAULT);
+        }
+
+        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        fileConfig.load();
+        List<String> channels = fileConfig.getOrElse(CHANNELS_PATH, CHANNELS_DEFAULT);
+        fileConfig.close();
+        return new Channels(channels);
     }
 
 }

@@ -1,20 +1,19 @@
 package fr.lukam.jambot.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Themes {
 
-    private final Set<Theme> themes;
+    private static final Random RANDOM = new Random();
 
-    public Themes(Set<Theme> themes) {
+    private final List<Theme> themes;
+
+    public Themes(List<Theme> themes) {
         this.themes = themes;
     }
 
     public Themes() {
-        this.themes = new HashSet<>();
+        this.themes = new ArrayList<>();
     }
 
     public List<Theme> getThemes() {
@@ -22,11 +21,18 @@ public class Themes {
     }
 
     public void add(Theme theme) {
+        if (themes.contains(theme)) {
+            return;
+        }
         themes.add(theme);
     }
 
     public void remove(Theme theme) {
         this.themes.remove(theme);
+    }
+
+    public Theme getRandomTheme() {
+        return themes.get(RANDOM.nextInt(themes.size()));
     }
 
 }

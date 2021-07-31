@@ -1,7 +1,6 @@
 package fr.lukam.jambot.commands;
 
 import fr.lukam.jambot.commands.impl.CommandPropose;
-import fr.lukam.jambot.model.Theme;
 import fr.lukam.jambot.model.Themes;
 import fr.lukam.jambot.utils.SerializerUtils;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
