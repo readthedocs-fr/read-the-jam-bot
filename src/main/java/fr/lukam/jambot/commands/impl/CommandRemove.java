@@ -11,11 +11,16 @@ public class CommandRemove extends StaffCommand {
     public void execute(GuildMessageReceivedEvent event) {
 
         String content = event.getMessage().getContentRaw();
-        String theme = content.substring(content.indexOf(" ") + 1);
+        Theme theme = new Theme(content.substring(content.indexOf(" ") + 1));
 
         Themes themes = retrieveThemes();
-        themes.remove(new Theme(theme));
 
+        if (!themes.contains(theme)) {
+            event.getChannel().sendMessage("Ce thème n'existe pas <:shrugenough:633064791425941565>.").queue();
+            return;
+        }
+
+        themes.remove(theme);
         registerThemes(themes);
 
         event.getChannel().sendMessage("Le thème a bien été supprimé.").queue();

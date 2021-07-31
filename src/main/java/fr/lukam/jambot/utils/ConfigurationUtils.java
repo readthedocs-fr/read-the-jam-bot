@@ -27,6 +27,9 @@ public class ConfigurationUtils {
     private static final String CHANNELS_PATH = "channels";
     private static final List<String> CHANNELS_DEFAULT = Arrays.asList("855906711448555242", "855906711448555242");
 
+    private static final String LIMIT_PATH = "limit";
+    private static final int LIMIT_DEFAULT = 20;
+
     public static Token getToken() {
 
         File file = new File("configuration.toml");
@@ -115,6 +118,21 @@ public class ConfigurationUtils {
         List<String> channels = fileConfig.getOrElse(CHANNELS_PATH, CHANNELS_DEFAULT);
         fileConfig.close();
         return new Channels(channels);
+    }
+
+    public static Limit getLimit() {
+
+        File file = new File("configuration.toml");
+
+        if (!file.exists()) {
+            return new Limit(LIMIT_DEFAULT);
+        }
+
+        FileConfig fileConfig = FileConfig.of(file);
+        fileConfig.load();
+        int limit = fileConfig.getOrElse(LIMIT_PATH, LIMIT_DEFAULT);
+        fileConfig.close();
+        return new Limit(limit);
     }
 
 }

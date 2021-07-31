@@ -16,6 +16,7 @@ public class CommandsRepository {
                 new CommandList(),
                 new CommandRemove(),
                 new CommandChoose(),
+                new CommandClear(),
                 new CommandHelp()
         );
     }

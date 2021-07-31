@@ -16,8 +16,23 @@ public class Themes {
         this.themes = new ArrayList<>();
     }
 
-    public List<Theme> getThemes() {
-        return new ArrayList<>(themes);
+    public List<String> buildMessage() {
+        List<String> messages = new ArrayList<>();
+        StringBuilder message = new StringBuilder("Liste des thèmes :\n");
+
+        for (int i = 0; i < themes.size(); i++) {
+            if (i % 10 == 0) {
+                messages.add(message.toString());
+                message = new StringBuilder();
+            }
+            message.append(i + 1)
+                    .append(" - ")
+                    .append(themes.get(i).theme)
+                    .append("\n");
+        }
+
+        messages.add(message.toString());
+        return messages;
     }
 
     public void add(Theme theme) {
@@ -33,6 +48,14 @@ public class Themes {
 
     public Theme getRandomTheme() {
         return themes.get(RANDOM.nextInt(themes.size()));
+    }
+
+    public boolean contains(Theme theme) {
+        return themes.contains(theme);
+    }
+
+    public void clear() {
+        themes.clear();
     }
 
 }
