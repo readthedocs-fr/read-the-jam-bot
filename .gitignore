@@ -114,5 +114,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 configuration.toml
-
 .idea
+themes.json
