@@ -37,8 +37,8 @@ sourceSets {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion('15')
-    targetCompatibility = JavaVersion.toVersion('15')
+    sourceCompatibility = JavaVersion.toVersion('11')
+    targetCompatibility = JavaVersion.toVersion('11')
 
 }
 
