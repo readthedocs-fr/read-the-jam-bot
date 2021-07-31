@@ -27,7 +27,7 @@ public class Themes {
             }
             message.append(i + 1)
                     .append(" - ")
-                    .append(themes.get(i).theme())
+                    .append(themes.get(i).theme)
                     .append("\n");
         }
 
