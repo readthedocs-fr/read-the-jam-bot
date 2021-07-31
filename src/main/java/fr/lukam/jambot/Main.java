@@ -36,9 +36,9 @@ public class Main {
 
         try {
 
-            jda = JDABuilder.createDefault(ConfigurationUtils.getToken().token)
+            jda = JDABuilder.createDefault(ConfigurationUtils.getToken().token())
                     .setStatus(OnlineStatus.ONLINE)
-                    .setActivity(Activity.of(Activity.ActivityType.DEFAULT, "préfixe : " + prefix.prefix))
+                    .setActivity(Activity.of(Activity.ActivityType.DEFAULT, "préfixe : " + prefix.prefix()))
                     .addEventListeners(new CommandListener(new CommandsRepository(), prefix))
                     .build();
 

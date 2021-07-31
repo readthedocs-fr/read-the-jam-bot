@@ -12,7 +12,7 @@ public class CommandChoose extends StaffCommand {
 
         Themes themes = retrieveThemes();
         Theme theme = themes.getRandomTheme();
-        event.getChannel().sendMessage("La Game jam aura lieu sur le thème suivant : " + theme.theme).queue();
+        event.getChannel().sendMessage("La Game jam aura lieu sur le thème suivant : " + theme.theme()).queue();
 
     }
 

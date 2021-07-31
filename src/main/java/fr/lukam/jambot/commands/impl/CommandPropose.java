@@ -53,7 +53,7 @@ public class CommandPropose extends Command {
             return;
         }
 
-        if (theme.length() > limit.limit) {
+        if (theme.length() > limit.limit()) {
             event.getChannel().sendMessage("Ce thème est trop long.").queue();
             return;
         }

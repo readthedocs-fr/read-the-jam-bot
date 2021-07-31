@@ -19,7 +19,7 @@ public abstract class StaffCommand extends Command {
 
     @Override
     public boolean canExecute(GuildMessageReceivedEvent event) {
-        Role role = event.getGuild().getRoleById(roleID.id);
+        Role role = event.getGuild().getRoleById(roleID.id());
 
         if (role == null) {
             return false;
