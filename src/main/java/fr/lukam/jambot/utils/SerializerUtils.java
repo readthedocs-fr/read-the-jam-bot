@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class SerializerUtils {
 
@@ -27,7 +28,7 @@ public class SerializerUtils {
 
     private static String loadContent(File file) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
         StringBuilder builder = new StringBuilder();
         String line;
 
