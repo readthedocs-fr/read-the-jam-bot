@@ -1,10 +1,16 @@
 package fr.lukam.jambot.commands.impl;
 
+import fr.lukam.jambot.commands.Command;
 import fr.lukam.jambot.commands.StaffCommand;
 import fr.lukam.jambot.model.Themes;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
-public class CommandList extends StaffCommand {
+public class CommandList extends Command {
+
+    @Override
+    public boolean canExecute(GuildMessageReceivedEvent event) {
+        return true;
+    }
 
     @Override
     public void execute(GuildMessageReceivedEvent event) {

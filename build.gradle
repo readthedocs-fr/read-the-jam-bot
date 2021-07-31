@@ -44,7 +44,6 @@ java {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'fr.luka.jambot.Main'
+        attributes 'Main-Class': 'fr.lukam.jambot.Main'
     }
-    dependsOn ('dependencies')
 }

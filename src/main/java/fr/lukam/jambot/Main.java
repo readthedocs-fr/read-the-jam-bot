@@ -36,6 +36,7 @@ public class Main {
 
         try {
 
+            System.out.println(ConfigurationUtils.getToken().token);
             jda = JDABuilder.createDefault(ConfigurationUtils.getToken().token)
                     .setStatus(OnlineStatus.ONLINE)
                     .setActivity(Activity.of(Activity.ActivityType.DEFAULT, "préfixe : " + prefix.prefix))

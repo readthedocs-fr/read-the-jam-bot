@@ -23,7 +23,7 @@ public class CommandPropose extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event) {
 
-        if (channels.isAuthorized(event.getChannel().getIdLong())) {
+        if (!channels.isAuthorized(event.getChannel().getIdLong())) {
             event.getChannel().sendMessage("Vous ne pouvez pas faire cette action ici.").queue();
             return;
         }

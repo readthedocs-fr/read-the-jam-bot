@@ -1,6 +1,5 @@
 package fr.lukam.jambot.commands;
 
-import fr.lukam.jambot.commands.impl.CommandPropose;
 import fr.lukam.jambot.model.Themes;
 import fr.lukam.jambot.utils.SerializerUtils;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -9,8 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public abstract class Command {
 
@@ -23,17 +20,15 @@ public abstract class Command {
     protected Themes retrieveThemes() {
 
         try {
+            File file = new File("themes.json");
 
-            URL resource = CommandPropose.class.getClassLoader().getResource("themes.json");
-
-            if (resource == null) {
+            if (!file.exists()) {
                 return new Themes();
             }
 
-            File file = new File(resource.toURI());
             return SerializerUtils.deserialize(file, Themes.class);
 
-        } catch (URISyntaxException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return new Themes();
         }
@@ -41,20 +36,19 @@ public abstract class Command {
     }
 
     protected void registerThemes(Themes themes) {
+
         try {
+            File file = new File("themes.json");
 
-            URL resource = CommandPropose.class.getClassLoader().getResource("themes.json");
-
-            if (resource == null) {
+            if (!file.exists()) {
                 return;
             }
 
-            File file = new File(resource.toURI());
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(SerializerUtils.serialize(themes));
             writer.close();
 
-        } catch (URISyntaxException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

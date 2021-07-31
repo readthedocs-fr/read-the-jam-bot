@@ -3,7 +3,7 @@ package fr.lukam.jambot.utils;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import fr.lukam.jambot.model.*;
 
-import java.net.URL;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class ConfigurationUtils {
     private static final String TOKEN_DEFAULT = "token";
 
     private static final String PREFIX_PATH = "prefix";
-    private static final char PREFIX_DEFAULT = '*';
+    private static final String PREFIX_DEFAULT = "*";
 
     private static final String GUILD_PATH = "guild";
     private static final String GUILD_DEFAULT = "803180065277712404";
@@ -29,13 +29,13 @@ public class ConfigurationUtils {
 
     public static Token getToken() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
+        if (!file.exists()) {
             return new Token(TOKEN_DEFAULT);
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
         String token = fileConfig.getOrElse(TOKEN_PATH, TOKEN_DEFAULT);
         fileConfig.close();
@@ -44,28 +44,28 @@ public class ConfigurationUtils {
 
     public static Prefix getPrefix() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
-            return new Prefix(PREFIX_DEFAULT);
+        if (!file.exists()) {
+            return new Prefix(PREFIX_DEFAULT.charAt(0));
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
-        char prefix = fileConfig.getOrElse(PREFIX_PATH, PREFIX_DEFAULT);
+        char prefix = fileConfig.getOrElse(PREFIX_PATH, PREFIX_DEFAULT).charAt(0);
         fileConfig.close();
         return new Prefix(prefix);
     }
 
     public static GuildId getGuildId() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
+        if (!file.exists()) {
             return new GuildId(GUILD_DEFAULT);
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
         String guildId = fileConfig.getOrElse(GUILD_PATH, GUILD_DEFAULT);
         fileConfig.close();
@@ -74,13 +74,13 @@ public class ConfigurationUtils {
 
     public static RoleId getRoleID() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
+        if (!file.exists()) {
             return new RoleId(GUILD_DEFAULT);
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
         String roleId = fileConfig.getOrElse(ROLE_PATH, ROLE_DEFAULT);
         fileConfig.close();
@@ -89,13 +89,13 @@ public class ConfigurationUtils {
 
     public static Authorized getAuthorized() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
+        if (!file.exists()) {
             return new Authorized(AUTHORIZED_DEFAULT);
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
         List<String> authorized = fileConfig.getOrElse(AUTHORIZED_PATH, AUTHORIZED_DEFAULT);
         fileConfig.close();
@@ -104,13 +104,13 @@ public class ConfigurationUtils {
 
     public static Channels getChannels() {
 
-        URL file = ConfigurationUtils.class.getClassLoader().getResource("configuration.toml");
+        File file = new File("configuration.toml");
 
-        if (file == null) {
+        if (!file.exists()) {
             return new Channels(CHANNELS_DEFAULT);
         }
 
-        FileConfig fileConfig = FileConfig.of(file.getPath().substring(1));
+        FileConfig fileConfig = FileConfig.of(file);
         fileConfig.load();
         List<String> channels = fileConfig.getOrElse(CHANNELS_PATH, CHANNELS_DEFAULT);
         fileConfig.close();
