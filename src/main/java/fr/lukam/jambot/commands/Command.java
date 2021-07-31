@@ -6,8 +6,10 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public abstract class Command {
 
@@ -36,15 +38,8 @@ public abstract class Command {
     }
 
     protected void registerThemes(Themes themes) {
-
         try {
-            File file = new File("themes.json");
-
-            if (!file.exists()) {
-                return;
-            }
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get("themes.json"), StandardCharsets.UTF_8);
             writer.write(SerializerUtils.serialize(themes));
             writer.close();
 
@@ -52,5 +47,4 @@ public abstract class Command {
             e.printStackTrace();
         }
     }
-
 }

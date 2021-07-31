@@ -21,7 +21,7 @@ public class Themes {
         StringBuilder message = new StringBuilder("Liste des thèmes :\n");
 
         for (int i = 0; i < themes.size(); i++) {
-            if (i % 10 == 0) {
+            if (i % 30 == 0) {
                 messages.add(message.toString());
                 message = new StringBuilder();
             }
